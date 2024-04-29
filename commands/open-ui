@@ -1,0 +1,7 @@
+#!/bin/bash
+
+## Description: Open the Pact Broker UI in a web browser
+## Usage: open-ui
+
+echo "Opening the Pact Broker UI..."
+xdg-open http://pact-broker.${DDEV_SITENAME}.ddev.site
