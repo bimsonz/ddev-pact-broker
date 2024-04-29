@@ -4,17 +4,21 @@ project_files:
   - docker-compose.pact-broker.yaml
   - commands/open-ui
 
-pre_install_actions:
+#pre_install_actions:
+#  - |
+#    echo "Setting up the database..."
+#    ddev exec db "createdb -U db pact_broker"
+#    ddev exec db "psql -U db -c \"CREATE USER pact_broker WITH ENCRYPTED PASSWORD 'CHANGE_ME';\""
+#    ddev exec db "psql -U db -c \"GRANT ALL PRIVILEGES ON DATABASE pact_broker TO pact_broker;\""
+#    echo "Database setup completed."
+
+post_install_actions:
   - |
     echo "Setting up the database..."
     ddev exec db "createdb -U db pact_broker"
     ddev exec db "psql -U db -c \"CREATE USER pact_broker WITH ENCRYPTED PASSWORD 'CHANGE_ME';\""
     ddev exec db "psql -U db -c \"GRANT ALL PRIVILEGES ON DATABASE pact_broker TO pact_broker;\""
     echo "Database setup completed."
-
-post_install_actions:
-  - |
-    echo "Pact Broker has been installed. Access it at http://pact-broker.${DDEV_SITENAME}.ddev.site"
 
 removal_actions:
   - |
